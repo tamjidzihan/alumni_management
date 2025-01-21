@@ -4,7 +4,7 @@ const Services = () => {
     return (
         <section className="py-16 px-6" id="services">
             <h2 className="text-3xl font-bold text-center mb-12">Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:px-10">
                 {[
                     {
                         title: "Memberships",
@@ -37,12 +37,12 @@ const Services = () => {
 
                     <div
                         key={index}
-                        className="bg-white rounded-lg shadow-lg overflow-hidden"
+                        className=" bg-white relative rounded-lg shadow-lg overflow-hidden"
                     >
                         <img
                             src={service.image}
                             alt={service.title}
-                            className="w-full h-48 object-cover"
+                            className=" absolute w-full h-48 object-cover"
                         />
                         <div className="p-4">
                             <h3 className="font-bold text-lg mb-2">{service.title}</h3>
