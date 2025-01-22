@@ -5,7 +5,7 @@ import ShinyText from './ShinyText';
 const Banner = () => {
     return (
         <>
-            <section className="relative h-[600px] isolate flex flex-col justify-end overflow-hidden">
+            <section id='home' className="relative h-[600px] isolate flex flex-col justify-end overflow-hidden">
                 <img src={banner} alt="University of Southern California" className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
                 <div className="absolute inset-0 flex items-center px-6">
