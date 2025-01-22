@@ -1,9 +1,9 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
 import { Outlet } from 'react-router-dom';
 
-const AdminLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+const AdminLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (

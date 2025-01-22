@@ -1,15 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
+import { useAuth } from '../../../hooks/useAuth';
 
 const SignIn: React.FC = () => {
+
+  const navigate = useNavigate();
+  const { signInWithEmail } = useAuth();
+
+
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);  // To hold error message
+
+  const handleSignIn = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      // Perform sign-in using Firebase
+      await signInWithEmail(email, password);
+      // If successful, navigate to the dashboard
+      navigate('/adminpanel'); // Redirect to dashboard or home page
+    } catch (error) {
+      // Handle any error during sign-in
+      setError('Failed to sign in. Please check your credentials and try again.');
+    }
+  };
+
   return (
     <>
-      <Breadcrumb pageName="Sign In" />
-
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="rounded-sm mt-15 lg:mt-30 place-self-center border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
@@ -155,7 +176,7 @@ const SignIn: React.FC = () => {
                 Sign In to TailAdmin
               </h2>
 
-              <form>
+              <form onSubmit={handleSignIn}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -164,6 +185,7 @@ const SignIn: React.FC = () => {
                     <input
                       type="email"
                       placeholder="Enter your email"
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -195,6 +217,7 @@ const SignIn: React.FC = () => {
                     <input
                       type="password"
                       placeholder="6+ Characters, 1 Capital letter"
+                      onChange={(e) => setPassword(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -270,7 +293,7 @@ const SignIn: React.FC = () => {
                 <div className="mt-6 text-center">
                   <p>
                     Don’t have any account?{' '}
-                    <Link to="/auth/signup" className="text-primary">
+                    <Link to="/signup" className="text-primary">
                       Sign Up
                     </Link>
                   </p>

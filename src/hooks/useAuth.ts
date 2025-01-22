@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, Us
 import { useEffect, useState } from "react";
 import { auth } from "../firebase/FirebaseApp";
 
+
 export const useAuth = () => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
@@ -32,10 +33,18 @@ export const useAuth = () => {
         try {
             const result = await createUserWithEmailAndPassword(auth, email, password);
             setUser(result.user); // Set the user after successful registration
-        } catch (error) {
-            console.error("Registration error:", error);
+            console.log("User registered successfully:", result.user);
+        } catch (error: any) {
+            if (error.code === "auth/email-already-in-use") {
+                console.error("This email is already registered.");
+                alert("This email is already registered. Please log in or use a different email.");
+            } else {
+                console.error("Registration error:", error.message);
+                alert("An error occurred during registration: " + error.message);
+            }
         }
     };
+
 
     const logOut = async () => {
         try {

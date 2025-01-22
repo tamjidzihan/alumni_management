@@ -4,7 +4,7 @@ import DashboardIndex from "./pages/Dashboard/DashboardIndex";
 
 export const childRoutes = [
     {
-        path: "/adminpanel",
+        path: "",
         element: (
             <>
                 <PageTitle title="Admin Dashboard | Cumilla Modern High School Alumni Association" />

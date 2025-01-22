@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import LogoDark from '../../images/logo/logo-dark.svg';
 import Logo from '../../images/logo/logo.svg';
+import { useAuth } from '../../../hooks/useAuth';
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
+
+  const { registerWithEmail } = useAuth(); // Assuming `register` is a function in your auth hook
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+
+    try {
+      setError(null);
+      await registerWithEmail(email, password); // Call your register function
+      navigate("/adminpanel");
+      alert('Account created successfully!');
+    } catch (err) {
+      setError('Failed to create an account. Please try again.');
+    }
+  };
+
+
   return (
     <>
-      <Breadcrumb pageName="Sign Up" />
-
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="rounded-sm mt-15 place-self-center  border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
@@ -154,8 +180,8 @@ const SignUp: React.FC = () => {
                 Sign Up to TailAdmin
               </h2>
 
-              <form>
-                <div className="mb-4">
+              <form onSubmit={handleSubmit}>
+                {/* <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Name
                   </label>
@@ -188,7 +214,7 @@ const SignUp: React.FC = () => {
                       </svg>
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
@@ -198,6 +224,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="email"
                       placeholder="Enter your email"
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -229,6 +256,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="password"
                       placeholder="Enter your password"
+                      onChange={(e) => setPassword(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -264,6 +292,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="password"
                       placeholder="Re-enter your password"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
@@ -339,7 +368,7 @@ const SignUp: React.FC = () => {
                 <div className="mt-6 text-center">
                   <p>
                     Already have an account?{' '}
-                    <Link to="/auth/signin" className="text-primary">
+                    <Link to="/signin" className="text-primary">
                       Sign in
                     </Link>
                   </p>
