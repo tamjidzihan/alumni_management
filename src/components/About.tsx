@@ -12,10 +12,7 @@ const About = () => {
                 <div>
                     <h2 className="text-3xl font-bold mb-6">About Us</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        We Excel Alumni Association at Malad West, Mumbai, Maharashtra are
-                        an official and well focused on building a vibrant ecosystem of
-                        key stakeholders including educators and alumni. We seek to
-                        support the students interest.
+                        The Cumilla Modern High School Alumni Association is a community organization comprising former students of Cumilla Modern High School. Its purpose is to foster connections among alumni, support the school's development, and organize events and initiatives that benefit both current students and the broader alumni network. The association often engages in activities such as reunions, mentorship programs, and charity projects, aiming to maintain a strong bond among members while contributing positively to the school and society.
                     </p>
                 </div>
             </div>

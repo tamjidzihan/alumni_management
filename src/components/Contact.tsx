@@ -15,15 +15,15 @@ const Contact = () => {
                     <div className="space-y-4">
                         <div className="flex items-center">
                             <Mail className="mr-2" />
-                            <span>websupport@alumni.com</span>
+                            <span>cmhsaa93@gmail.com</span>
                         </div>
                         <div className="flex items-center">
                             <Phone className="mr-2" />
-                            <span>+88 081-72220</span>
+                            <span>+88 081-63580</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="mr-2" />
-                            <span>SUN - THS: 07:00 AM - 06:00 PM</span>
+                            <span>SUN - THU: 07:00 AM - 05:00 PM</span>
                         </div>
                     </div>
                 </div>
