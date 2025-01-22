@@ -1,5 +1,5 @@
 import PageTitle from "./components/PageTitle";
-import ECommerce from "./pages/Dashboard/ECommerce";
+import DashboardIndex from "./pages/Dashboard/DashboardIndex";
 
 
 export const childRoutes = [
@@ -7,8 +7,8 @@ export const childRoutes = [
         path: "/adminpanel",
         element: (
             <>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-                <ECommerce />
+                <PageTitle title="Admin Dashboard | Cumilla Modern High School Alumni Association" />
+                <DashboardIndex />
             </>
         ),
         index: true,
