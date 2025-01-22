@@ -2,7 +2,7 @@ const Navbar = () => {
     return (
         <nav className="flex items-center sticky top-0 z-50 justify-between px-6 py-4 bg-gradient-to-r from-purple-700 to-blue-600">
             <div className="text-white font-bold text-xl">
-                Excel Alumni Association
+                Cumilla Modern High School Alumni Association
             </div>
             <div className="hidden md:flex space-x-6 text-white">
                 <a href="#home">HOME</a>

@@ -1,4 +1,4 @@
-import { Menu, Mail, Phone, Clock } from "lucide-react";
+import { Mail, Phone, Clock } from "lucide-react";
 
 const Contact = () => {
     return (
@@ -7,10 +7,9 @@ const Contact = () => {
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <div className="mb-8">
-                        <h3 className="font-bold mb-4">Our Office Address</h3>
+                        <h3 className="font-bold mb-4">Our Address</h3>
                         <p className="text-gray-600">
-                            Room Excel Wing Pl, 1st SR, GR Floor New Link Road, Besides
-                            Goregaon Sports Complex, Malad West, Maharashtra 400064
+                            Nazrul Avenue, Kandirpar, Cumilla
                         </p>
                     </div>
                     <div className="space-y-4">
@@ -20,11 +19,11 @@ const Contact = () => {
                         </div>
                         <div className="flex items-center">
                             <Phone className="mr-2" />
-                            <span>+91-9999999999</span>
+                            <span>+88 081-72220</span>
                         </div>
                         <div className="flex items-center">
                             <Clock className="mr-2" />
-                            <span>Mon - Sun: 10:00 AM - 07:00 PM</span>
+                            <span>SUN - THS: 07:00 AM - 06:00 PM</span>
                         </div>
                     </div>
                 </div>
