@@ -1,5 +1,6 @@
 import PageTitle from "./components/PageTitle";
 import DashboardIndex from "./pages/Dashboard/DashboardIndex";
+import Events from "./pages/Events/Events";
 
 
 export const childRoutes = [
@@ -13,15 +14,15 @@ export const childRoutes = [
         ),
         index: true,
     },
-    //   {
-    //     path: "/calendar",
-    //     element: (
-    //       <>
-    //         <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-    //         <Calendar />
-    //       </>
-    //     ),
-    //   },
+    {
+        path: "events",
+        element: (
+            <>
+                <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <Events />
+            </>
+        ),
+    },
     //   {
     //     path: "/profile",
     //     element: (
