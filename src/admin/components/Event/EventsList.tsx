@@ -39,13 +39,13 @@ const EventsList = () => {
       <CreateEventModal isOpen={isModalOpen} closeModal={closeModal} />
 
       <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-2 flex items-center">
+        <div className="col-span-1 flex items-center">
           <p className="font-medium">Title</p>
         </div>
         <div className="col-span-2 hidden items-center sm:flex">
           <p className="font-medium">Schedule</p>
         </div>
-        <div className="col-span-2 flex items-center">
+        <div className="col-span-3 flex items-center">
           <p className="font-medium">Description</p>
         </div>
         <div className="col-span-1 flex items-center">
@@ -61,16 +61,16 @@ const EventsList = () => {
         allEvent.map((event: EventsProps) => (
           <div
             key={event.id}
-            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            className="grid grid-cols-6 border-t hover:bg-gray-100 border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           >
-            <div className="col-span-2 flex items-center">
+            <div className="col-span-1 flex items-center">
               <p>{event.title}</p>
             </div>
             <div className="col-span-2 hidden items-center sm:flex">
               <p>{new Date(event.schedule).toLocaleString()}</p>
             </div>
-            <div className="col-span-2 flex items-center">
-              <p>{event.description || 'N/A'}</p>
+            <div className="col-span-3 flex items-center">
+              <p className=' text-xs italic'>{event.description || 'N/A'}</p>
             </div>
             <div className="col-span-1 flex items-center">
               <p>{event.commitedTo || 'N/A'}</p>
@@ -78,7 +78,7 @@ const EventsList = () => {
             <div className="col-span-1 flex items-center">
               <div className="flex items-center space-x-3.5">
 
-                <button className="hover:text-primary">
+                <button className="hover:text-success">
                   <svg
                     className="fill-current"
                     width="18"
@@ -104,7 +104,7 @@ const EventsList = () => {
                   </svg>
                 </button>
 
-                <button className="hover:text-primary">
+                <button className="hover:text-danger">
                   <svg
                     className="fill-current"
                     width="18"

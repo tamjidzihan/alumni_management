@@ -3,6 +3,7 @@ import { useEvents } from '../../../hooks/useEvents';
 
 const CreateEventModal = ({ isOpen, closeModal }: { isOpen: boolean; closeModal: () => void }) => {
     const { createEvent } = useEvents(); // Access the createEvent function from the hook
+
     const [title, setTitle] = useState('');
     const [schedule, setSchedule] = useState('');
     const [description, setDescription] = useState('');
@@ -24,7 +25,7 @@ const CreateEventModal = ({ isOpen, closeModal }: { isOpen: boolean; closeModal:
         );
 
         if (createdEvent) {
-            console.log('Event Created:', createdEvent);
+            console.log('Event Created');
         } else {
             console.error('Failed to create the event');
         }
