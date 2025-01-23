@@ -1,16 +1,15 @@
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../context/AuthContext";
+import Loader from "../common/Loader";
 
-const PrivateRoute = () => {
-    const { user } = useAuth(); // Check if the user is authenticated
+const AdminRoute: React.FC = () => {
+    const { user, role, loading } = useAuth();
 
+    if (loading) return <><Loader /></>;
 
-    if (!user) {
-        // Redirect to login if not authenticated
-        return <Navigate to="/signin" />;
-    }
-
-    return <Outlet />; // Render the child routes if authenticated
+    // Only allow access if role is admin (2)
+    return user && role === 2 ? <Outlet /> : <Navigate to="/signin" />;
 };
 
-export default PrivateRoute;
+export default AdminRoute;

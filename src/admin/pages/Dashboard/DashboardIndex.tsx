@@ -1,15 +1,13 @@
 import React from 'react';
 import CardDataStats from '../../components/CardDataStats';
-// import ChartOne from '../../components/Charts/ChartOne';
-// import ChartThree from '../../components/Charts/ChartThree';
-// import ChartTwo from '../../components/Charts/ChartTwo';
-// import ChatCard from '../../components/Chat/ChatCard';
-// import MapOne from '../../components/Maps/MapOne';
-// import TableOne from '../../components/Tables/TableOne';
+import { useAuth } from '../../../context/AuthContext';
 
 const DashboardIndex: React.FC = () => {
+  const { name } = useAuth()
+
   return (
     <>
+      <div className=' text-2xl lg:mb-10'>Welcome {name}</div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats title="Upcoming Events" total="3" rate="0.43%" levelUp>
           <svg
@@ -49,7 +47,7 @@ const DashboardIndex: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-        <CardDataStats title="Posted jobs" total="0" rate="2.59%" levelUp>
+        <CardDataStats title="Posted jobs (Demo)" total="0" rate="2.59%" levelUp>
           <svg
             className="fill-primary dark:fill-white"
             width="22"
@@ -73,7 +71,7 @@ const DashboardIndex: React.FC = () => {
             </g>
           </svg>
         </CardDataStats>
-        <CardDataStats title="Total Amount" total="45,2K" rate="4.35%" levelUp>
+        <CardDataStats title="Total Amount (Demo)" total="45,2K" rate="4.35%" levelUp>
           <svg
             className="fill-primary dark:fill-white"
             width="20"
@@ -96,17 +94,6 @@ const DashboardIndex: React.FC = () => {
             />
           </svg>
         </CardDataStats>
-      </div>
-
-      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        {/* <ChartOne />
-        <ChartTwo />
-        <ChartThree /> */}
-        {/* <MapOne /> */}
-        <div className="col-span-12 xl:col-span-8">
-          {/* <TableOne /> */}
-        </div>
-        {/* <ChatCard /> */}
       </div>
     </>
   );

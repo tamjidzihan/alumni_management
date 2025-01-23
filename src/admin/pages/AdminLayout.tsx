@@ -4,8 +4,8 @@ import Sidebar from '../components/Sidebar/index';
 import { Outlet } from 'react-router-dom';
 
 const AdminLayout = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
         <div className="dark:bg-boxdark-2 dark:text-bodydark">
             {/* <!-- ===== Page Wrapper Start ===== --> */}
