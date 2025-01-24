@@ -1,4 +1,5 @@
 import PageTitle from "./components/PageTitle";
+import AlumniList from "./pages/AlumniList/AlumniList";
 import DashboardIndex from "./pages/Dashboard/DashboardIndex";
 import Events from "./pages/Events/Events";
 
@@ -8,7 +9,7 @@ export const childRoutes = [
         path: "",
         element: (
             <>
-                <PageTitle title="Admin Dashboard | Cumilla Modern High School Alumni Association" />
+                <PageTitle title="Admin Dashboard | Dashboard" />
                 <DashboardIndex />
             </>
         ),
@@ -18,20 +19,20 @@ export const childRoutes = [
         path: "events",
         element: (
             <>
-                <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="Events | Manage your Events Here" />
                 <Events />
             </>
         ),
     },
-    //   {
-    //     path: "/profile",
-    //     element: (
-    //       <>
-    //         <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-    //         <Profile />
-    //       </>
-    //     ),
-    //   },
+    {
+        path: "alumni",
+        element: (
+            <>
+                <PageTitle title="Alumni List | Modarate Alumni List" />
+                <AlumniList />
+            </>
+        ),
+    },
     //   {
     //     path: "/forms/form-elements",
     //     element: (

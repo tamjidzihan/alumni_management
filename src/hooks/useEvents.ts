@@ -1,6 +1,7 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase/FirebaseApp";
+import { useAuth } from "../context/AuthContext";
 
 export interface EventsProps {
     id: string;
@@ -12,6 +13,7 @@ export interface EventsProps {
 
 export const useEvents = () => {
     const [allEvent, setAllEvent] = useState<EventsProps[]>([])
+    const { user } = useAuth()
 
     useEffect(() => {
         const getEvent = async () => {
@@ -24,7 +26,7 @@ export const useEvents = () => {
             setAllEvent(postEventItem)
         }
         getEvent()
-    }, [])
+    }, [user?.uid])
 
 
     const createEvent = async (
@@ -33,32 +35,70 @@ export const useEvents = () => {
         description: string | null,
         commitedTo: string | null
     ): Promise<EventsProps | null> => {
-        try {
-            const docRef = await addDoc(collection(db, 'events'), {
-                title: title,
-                schedule: schedule,
-                description: description,
-                commitedTo: commitedTo
-            });
-            const newEvent = {
-                id: docRef.id,
-                title: title,
-                schedule: schedule,
-                description: description,
-                commitedTo: commitedTo
-            };
-            setAllEvent((prev) => [...prev, newEvent]);
-            return newEvent;
-        } catch (error) {
-            console.error("Error While creating Events:", error);
+        if (user?.uid && title) {
+            try {
+                const docRef = await addDoc(collection(db, 'events'), {
+                    title: title,
+                    schedule: schedule,
+                    description: description,
+                    commitedTo: commitedTo
+                });
+                const newEvent = {
+                    id: docRef.id,
+                    title: title,
+                    schedule: schedule,
+                    description: description,
+                    commitedTo: commitedTo
+                };
+                setAllEvent((prev) => [...prev, newEvent]);
+                return newEvent;
+            } catch (error) {
+                console.error("Error While creating Events:", error);
+                return null;
+            }
+        } else {
+            console.error("User is not authenticated ");
             return null;
         }
     };
 
+    const updateEvent = async (id: string, updatedData: Partial<EventsProps>) => {
+        if (user?.uid && id) {
+            try {
+                await updateDoc(doc(db, 'events', id), updatedData);
+                setAllEvent((prev) =>
+                    prev.map((event) => (event.id === id ? { ...event, ...updatedData } : event))
+                );
+            } catch (error) {
+                console.error("Error updating event:", error);
+            }
+        } else {
+            console.error("User is not authenticated ");
+            return null;
+        }
+
+    };
+
+    const deleteEvent = async (id: string) => {
+        if (user?.uid && id) {
+            try {
+                await deleteDoc(doc(db, 'events', id));
+                setAllEvent((prev) => prev.filter((event) => event.id !== id));
+            } catch (error) {
+                console.error("Error deleting event:", error);
+            }
+        } else {
+            console.error("User is not authenticated ");
+            return null;
+        }
+    };
 
     return {
         allEvent,
-        createEvent
+        setAllEvent,
+        createEvent,
+        updateEvent,
+        deleteEvent
     }
 }
 

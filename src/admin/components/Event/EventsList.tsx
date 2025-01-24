@@ -2,9 +2,26 @@ import { useState } from 'react';
 import CreateEventModal from './CreateEventModel';
 import { EventsProps, useEvents } from '../../../hooks/useEvents';
 
-const EventsList = () => {
+
+type EventsListProps = {
+  allEvent: EventsProps[];
+  createNewEvent: (
+    title: string,
+    schedule: string,
+    description: string | null,
+    commitedTo: null
+  ) => Promise<EventsProps | null>;
+  deleteEvent: (id: string) => void;
+
+};
+
+const EventsList = ({ allEvent, createNewEvent, deleteEvent }: EventsListProps) => {
+  const { setAllEvent } = useEvents()
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { allEvent } = useEvents(); // Access the fetched events
+
+  const addNewEvent = (newEvent: EventsProps) => [
+    setAllEvent(pervEvents => [newEvent, ...pervEvents,])
+  ]
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -35,8 +52,16 @@ const EventsList = () => {
         </button>
       </div>
 
-      {/* Event Modal */}
-      <CreateEventModal isOpen={isModalOpen} closeModal={closeModal} />
+      {/* Create Event Modal */}
+      <CreateEventModal
+
+        addNewEvent={addNewEvent}
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        createEvent={createNewEvent}
+      />
+      {/* Create Event Modal */}
+
 
       <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
         <div className="col-span-1 flex items-center">
@@ -63,16 +88,16 @@ const EventsList = () => {
             key={event.id}
             className="grid grid-cols-6 border-t hover:bg-gray-100 border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           >
-            <div className="col-span-1 flex items-center">
-              <p>{event.title}</p>
+            <div className="col-span-1 flex items-center mr-3">
+              <p className=' overflow-hidden'>{event.title}</p>
             </div>
-            <div className="col-span-2 hidden items-center sm:flex">
+            <div className="col-span-2 hidden items-center mr-3 sm:flex">
               <p>{new Date(event.schedule).toLocaleString()}</p>
             </div>
-            <div className="col-span-3 flex items-center">
+            <div className="col-span-3 flex items-center mr-3">
               <p className=' text-xs italic'>{event.description || 'N/A'}</p>
             </div>
-            <div className="col-span-1 flex items-center">
+            <div className="col-span-1 flex items-center mr-3">
               <p>{event.commitedTo || 'N/A'}</p>
             </div>
             <div className="col-span-1 flex items-center">
@@ -104,7 +129,7 @@ const EventsList = () => {
                   </svg>
                 </button>
 
-                <button className="hover:text-danger">
+                <button className="hover:text-danger" onClick={() => deleteEvent(event.id)}>
                   <svg
                     className="fill-current"
                     width="18"
