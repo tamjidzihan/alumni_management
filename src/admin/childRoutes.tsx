@@ -1,4 +1,7 @@
+import Gallery from "./components/Gallery/Gallery";
 import PageTitle from "./components/PageTitle";
+import About from "./components/SiteSettings/About";
+import Contact from "./components/SiteSettings/Contact";
 import AlumniList from "./pages/AlumniList/AlumniList";
 import DashboardIndex from "./pages/Dashboard/DashboardIndex";
 import Events from "./pages/Events/Events";
@@ -33,21 +36,49 @@ export const childRoutes = [
             </>
         ),
     },
+    {
+        path: "gallery",
+        element: (
+            <>
+                <PageTitle title="Gallery | Photo Gallery" />
+                <Gallery />
+            </>
+        ),
+    },
+    {
+        path: "sitesettings/about",
+        element: (
+            <>
+                <PageTitle title="About Us | About Us" />
+                <About />
+            </>
+        ),
+    },
+    {
+        path: "sitesettings/contact",
+        element: (
+            <>
+                <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <Contact />
+            </>
+        ),
+    },
+    // 
     //   {
-    //     path: "/forms/form-elements",
+    //     path: "/tables",
     //     element: (
     //       <>
-    //         <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-    //         <FormElements />
+    //         <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+    //         <Tables />
     //       </>
     //     ),
     //   },
     //   {
-    //     path: "/forms/form-layout",
+    //     path: "/tables",
     //     element: (
     //       <>
-    //         <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-    //         <FormLayout />
+    //         <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+    //         <Tables />
     //       </>
     //     ),
     //   },
