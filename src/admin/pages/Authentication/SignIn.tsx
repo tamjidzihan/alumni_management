@@ -30,7 +30,7 @@ const SignIn: React.FC = () => {
 
   return (
     <>
-      <div className="rounded-sm mt-15 lg:mt-30 place-self-center border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="rounded-sm mt-15 lg:mt-20 place-self-center border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="py-17.5 px-26 text-center">
