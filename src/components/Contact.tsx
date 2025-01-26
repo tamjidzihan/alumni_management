@@ -1,6 +1,9 @@
 import { Mail, Phone, Clock } from "lucide-react";
+import { useContact } from "../hooks/useContact";
 
 const Contact = () => {
+    const { contact } = useContact()
+
     return (
         <section className="py-16 px-6" id="contact">
             <h2 className="text-3xl font-bold text-center mb-12">Contact Us</h2>
@@ -9,21 +12,17 @@ const Contact = () => {
                     <div className="mb-8">
                         <h3 className="font-bold mb-4">Our Address</h3>
                         <p className="text-gray-600">
-                            Nazrul Avenue, Kandirpar, Cumilla
+                            {contact?.address}
                         </p>
                     </div>
                     <div className="space-y-4">
                         <div className="flex items-center">
                             <Mail className="mr-2" />
-                            <span>cmhsaa93@gmail.com</span>
+                            <span>{contact?.email}</span>
                         </div>
                         <div className="flex items-center">
                             <Phone className="mr-2" />
-                            <span>+88 081-63580</span>
-                        </div>
-                        <div className="flex items-center">
-                            <Clock className="mr-2" />
-                            <span>SUN - THU: 07:00 AM - 05:00 PM</span>
+                            <span>{contact?.phone}</span>
                         </div>
                     </div>
                 </div>
