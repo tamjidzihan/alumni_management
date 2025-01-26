@@ -28,10 +28,8 @@ export const useContact = () => {
                 console.error('Error fetching about data:', error);
             }
         };
-        if (user?.uid) {
-            getContact();
-        }
-    }, [user?.uid])
+        getContact();
+    }, [])
 
     const saveContact = async (newContact: Omit<ContactProps, 'id'>) => {
         try {

@@ -27,10 +27,8 @@ export const useAbout = () => {
                 console.error('Error fetching about data:', error);
             }
         };
-        if (user?.uid) {
-            getAbout();
-        }
-    }, [user?.uid]);
+        getAbout();
+    }, []);
 
     // Update or create "about us" data
     const saveAbout = async (newAbout: Omit<AboutProps, 'id'>) => {
