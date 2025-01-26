@@ -5,6 +5,7 @@ import { db } from '../firebase/FirebaseApp';
 
 export interface AboutProps {
     id: string;
+    heading: string;
     aboutUs: string;
 }
 

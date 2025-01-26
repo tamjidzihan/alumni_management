@@ -18,7 +18,6 @@ const ContactUs = () => {
 
 
     const handleSave = async () => {
-
         const newContact = { address, email, phone };
         await saveContact(newContact);
         alert("Contact information saved successfully!");

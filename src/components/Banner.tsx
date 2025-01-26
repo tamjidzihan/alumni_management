@@ -1,8 +1,11 @@
 import banner from '../assets/banner.jpg'
+import { useAbout } from '../hooks/useAbout';
 import BlurText from './BlurText';
 import ShinyText from './ShinyText';
 
 const Banner = () => {
+
+    const { aboutUs } = useAbout()
     return (
         <>
             <section id='home' className="relative h-[600px] isolate flex flex-col justify-end overflow-hidden">
@@ -12,7 +15,7 @@ const Banner = () => {
                     <div className="text-white max-w-xl md:ml-20 lg:ml-40">
 
                         <BlurText
-                            text="Welcome to Grand Re-Union 2025"
+                            text={aboutUs?.heading}
                             delay={150}
                             animateBy="words"
                             direction="top"
