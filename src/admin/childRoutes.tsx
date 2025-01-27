@@ -1,4 +1,4 @@
-import Gallery from "./components/Gallery/Gallery";
+import Gallery from "./pages/Gallery/Gallery";
 import PageTitle from "./components/PageTitle";
 import About from "./pages/SiteSettings/About";
 import Contact from "./pages/SiteSettings/Contact";
