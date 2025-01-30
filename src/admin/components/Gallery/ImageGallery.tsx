@@ -33,9 +33,9 @@ const ImageGallery = ({ allImage }: ImageGalleryProps) => {
                         key={image.id}
                     >
                         <div className="col-span-4 flex items-center">
-                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                                <div className="h-30 w-45 rounded-md">
-                                    <img src={image.url} alt="Product" />
+                            <div className=" flex flex-col gap-4 sm:flex-row sm:items-center">
+                                <div className="rounded-md">
+                                    <img className="max-w-45 max-h-30" src={image.url} alt="Product" />
                                 </div>
                             </div>
                         </div>
