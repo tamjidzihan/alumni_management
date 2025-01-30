@@ -10,7 +10,7 @@ const Gallery = () => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     const [imageContext, setImageContext] = useState<string>('');
     const { uploadImageToCloudinary } = useImageUpload();
-    const { saveImage, allImage, setAllImage } = useGallery();
+    const { saveImage, allImage, setAllImage, deleteImage } = useGallery();
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0] || null;
@@ -21,28 +21,15 @@ const Gallery = () => {
     };
 
     const handleSave = async (e: React.FormEvent) => {
-        e.preventDefault()
+        e.preventDefault();
         setLoading(true);
         if (selectedImage) {
-            try {
-                const imageUrl = await uploadImageToCloudinary(selectedImage);
-                const newImage = await saveImage(
-                    imageUrl,
-                    imageContext,
-                    new Date().toString()
-                );
-                if (newImage) {
-                    setAllImage(pervImage => [newImage, ...pervImage])
-                }
-                alert("Image uploaded and URL saved successfully!");
-                setSelectedImage(null);
-                setPreviewImage(null);
-            } catch (error) {
-                console.error("Error uploading image:", error);
-                alert("Failed to upload image.");
-            } finally {
-                setLoading(false);
-            }
+            const imageUrl = await uploadImageToCloudinary(selectedImage);
+            await saveImage(imageUrl, imageContext, new Date().toString());
+            alert("Image uploaded and URL saved successfully!");
+            setSelectedImage(null);
+            setPreviewImage(null);
+            setLoading(false);
         } else {
             alert("Please select an image first.");
             setLoading(false);
@@ -155,7 +142,7 @@ const Gallery = () => {
                         </div>
                     </div>
                 </div>
-                <ImageGallery allImage={allImage} />
+                <ImageGallery allImage={allImage} deleteImage={deleteImage} />
             </div>
         </div>
     );

@@ -50,7 +50,7 @@ export const useEvents = () => {
                     description: description,
                     commitedTo: commitedTo
                 };
-                setAllEvent((prev) => [...prev, newEvent]);
+                setAllEvent((prev) => [newEvent, ...prev]);
                 return newEvent;
             } catch (error) {
                 console.error("Error While creating Events:", error);

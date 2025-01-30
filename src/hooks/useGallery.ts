@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/FirebaseApp";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
@@ -21,7 +21,7 @@ export const useGallery = () => {
             const postGalleryItem: GalleryProps[] = [];
             querySnapshot.forEach((doc) => {
                 const postGalleryData = doc.data() as Omit<GalleryProps, 'id'>
-                postGalleryItem.push({ id: 'id', ...postGalleryData })
+                postGalleryItem.push({ id: doc.id, ...postGalleryData })
             })
             setAllImage(postGalleryItem)
         }
@@ -61,10 +61,28 @@ export const useGallery = () => {
         }
     }
 
+
+    const deleteImage = async (id: string) => {
+        if (user?.uid && id) {
+            try {
+                await deleteDoc(doc(db, 'gallery', id));
+                setAllImage((prev) => prev.filter((image) => image.id !== id))
+
+            } catch (error) {
+                console.error("Error deleting Image:", error);
+            }
+        } else {
+            console.error("User is not authenticated ");
+            return null;
+        }
+    }
+
+
     return {
         allImage,
         setAllImage,
-        saveImage
+        saveImage,
+        deleteImage
     };
 };
 

@@ -12,7 +12,6 @@ type EventsListProps = {
     commitedTo: null
   ) => Promise<EventsProps | null>;
   deleteEvent: (id: string) => void;
-
 };
 
 const EventsList = ({ allEvent, createNewEvent, deleteEvent }: EventsListProps) => {
