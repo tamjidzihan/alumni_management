@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import { useImageUpload } from '../../../hooks/useImageUpload';
-import { useGallery } from '../../../hooks/useGallery';
+import { GalleryProps, useGallery } from '../../../hooks/useGallery';
 import ImageGallery from '../../components/Gallery/ImageGallery';
 
 const Gallery = () => {
@@ -26,10 +26,13 @@ const Gallery = () => {
         if (selectedImage) {
             try {
                 const imageUrl = await uploadImageToCloudinary(selectedImage);
-                await saveImage(
+                const newImage = await saveImage(
                     imageUrl,
                     imageContext
                 );
+                if (newImage) {
+                    setAllImage(pervImage => [newImage, ...pervImage])
+                }
                 alert("Image uploaded and URL saved successfully!");
                 setSelectedImage(null);
                 setPreviewImage(null);

@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 export interface GalleryProps {
     id: string;
     url: string;
-    imageContext: string;
+    imageContext: string | null;
     uploadedAt: string;
 }
 
@@ -32,26 +32,33 @@ export const useGallery = () => {
     const saveImage = async (
         url: string,
         imageContext: string | null,
-    ): Promise<void> => {
+    ): Promise<GalleryProps | null> => {
         if (user?.uid && url) {
             try {
-                const imagesCollection = collection(db, "gallery");
-                await addDoc(imagesCollection, {
+                const docRef = await addDoc(collection(db, 'gallery'), {
                     url: url,
                     imageContext: imageContext,
-                    uploadedAt: new Date(),
+                    uploadedAt: new Date().toString(),
                 });
-                console.log("Image URL saved successfully!");
+                const newImage = {
+                    id: docRef.id,
+                    url: url,
+                    imageContext: imageContext,
+                    uploadedAt: new Date().toString(),
+                };
+                // setAllImage((prev) => [newImage, ...prev])
+                console.log("Image saved successfully!");
+                return newImage
             } catch (error) {
                 console.error("Error saving image URL to Firestore:", error);
                 throw error;
             }
 
-        };
+        } else {
+            console.error("User is not authenticated ");
+            return null;;
+        }
     }
-
-
-
 
     return {
         allImage,
@@ -59,3 +66,4 @@ export const useGallery = () => {
         saveImage
     };
 };
+
