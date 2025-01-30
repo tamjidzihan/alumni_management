@@ -8,8 +8,9 @@ const Gallery = () => {
     const [loading, setLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
+    const [imageContext, setImageContext] = useState<string>('');
     const { uploadImageToCloudinary } = useImageUpload();
-    const { saveImageUrl } = useGallery();
+    const { saveImage, allImage, setAllImage } = useGallery();
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0] || null;
@@ -19,12 +20,16 @@ const Gallery = () => {
         }
     };
 
-    const handleSave = async () => {
+    const handleSave = async (e: React.FormEvent) => {
+        e.preventDefault()
         setLoading(true);
         if (selectedImage) {
             try {
                 const imageUrl = await uploadImageToCloudinary(selectedImage);
-                await saveImageUrl(imageUrl);
+                await saveImage(
+                    imageUrl,
+                    imageContext
+                );
                 alert("Image uploaded and URL saved successfully!");
                 setSelectedImage(null);
                 setPreviewImage(null);
@@ -112,6 +117,16 @@ const Gallery = () => {
                                     <p>(max, 800 X 800px)</p>
                                 </div>
                             </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium mb-2">Photo Description</label>
+                                <input
+                                    type="text"
+                                    value={imageContext}
+                                    onChange={(e) => setImageContext(e.target.value)}
+                                    className="w-full p-2 border rounded-md"
+                                    required
+                                />
+                            </div>
 
                             <div className="flex justify-end gap-4.5">
                                 <button
@@ -136,7 +151,7 @@ const Gallery = () => {
                         </div>
                     </div>
                 </div>
-                <ImageGallery />
+                <ImageGallery allImage={allImage} />
             </div>
         </div>
     );
