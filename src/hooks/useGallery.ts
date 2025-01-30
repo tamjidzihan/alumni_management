@@ -32,21 +32,22 @@ export const useGallery = () => {
     const saveImage = async (
         url: string,
         imageContext: string | null,
+        uploadedAt: string
     ): Promise<GalleryProps | null> => {
         if (user?.uid && url) {
             try {
                 const docRef = await addDoc(collection(db, 'gallery'), {
                     url: url,
                     imageContext: imageContext,
-                    uploadedAt: new Date().toString(),
+                    uploadedAt: uploadedAt,
                 });
                 const newImage = {
                     id: docRef.id,
                     url: url,
                     imageContext: imageContext,
-                    uploadedAt: new Date().toString(),
+                    uploadedAt: uploadedAt,
                 };
-                // setAllImage((prev) => [newImage, ...prev])
+                setAllImage((prev) => [newImage, ...prev])
                 console.log("Image saved successfully!");
                 return newImage
             } catch (error) {

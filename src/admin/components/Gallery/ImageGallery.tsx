@@ -4,8 +4,6 @@ interface ImageGalleryProps {
     allImage: GalleryProps[];
 }
 
-
-
 const ImageGallery = ({ allImage }: ImageGalleryProps) => {
     return (
         <div className="col-span-5 xl:col-span-3">
