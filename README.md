@@ -1,8 +1,8 @@
-# School Management System
+# School Alumni Management System
 
 ## Overview
 
-This project is a **School Management System** built using **React, Vite, TypeScript, Tailwind CSS**, and **Firebase**. It features a public website with sections like Home, About, Events, Services, Photo Gallery, and Contact. It also includes an **Admin Panel** for managing school-related data.
+This project is a **School Alumni Management System** built using **React, Vite, TypeScript, Tailwind CSS**, and **Firebase**. It features a public website with sections like Home, About, Events, Services, Photo Gallery, and Contact. It also includes an **Admin Panel** for managing school-related data.
 
 ## Features
 
