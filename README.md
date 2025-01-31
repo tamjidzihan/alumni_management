@@ -77,7 +77,7 @@ VITE_APP_ID=your_app_id
 
 ### Set Up Cloudinary
 
-1. Create a cloudinary project in the [Firebase Console](https://cloudinary.com/users/login)
+1. Create a cloudinary project in the [Cloudinary Console](https://cloudinary.com/users/login)
 2. Add cloudinary credentials in a `.env` file:
 
 ```sh
