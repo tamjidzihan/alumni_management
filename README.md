@@ -74,6 +74,18 @@ VITE_MESSAGING_SENDER_ID=your_messaging_sender_id
 VITE_APP_ID=your_app_id
 ```
 
+
+### Set Up Cloudinary
+
+1. Create a cloudinary project in the [Firebase Console](https://cloudinary.com/users/login)
+2. Add cloudinary credentials in a `.env` file:
+
+```sh
+VITE_PRESET=your_cloudinary_preset
+VITE_CLOUDINARYURL=your_cloudinary_url
+```
+
+
 ### Run the Development Server
 
 ```sh
