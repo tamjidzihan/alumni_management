@@ -9,8 +9,8 @@ export const useImageUpload = () => {
         setIsUploading(true);
         setUploadError(null);
 
-        const preset = "alumni_management_system";
-        const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dgjxkoai7/image/upload";
+        const preset = import.meta.env.VITE_PRESET
+        const cloudinaryUrl = import.meta.env.VITE_CLOUDINARYURL;
 
         const formData = new FormData();
         formData.append("file", image);
