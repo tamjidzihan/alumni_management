@@ -1,12 +1,12 @@
-import Gallery from "./pages/Gallery/Gallery";
 import PageTitle from "./components/PageTitle";
-import About from "./pages/SiteSettings/About";
-import Contact from "./pages/SiteSettings/Contact";
 import AlumniList from "./pages/AlumniList/AlumniList";
 import SignIn from "./pages/Authentication/SignIn";
 import SignUp from "./pages/Authentication/SignUp";
 import DashboardIndex from "./pages/Dashboard/DashboardIndex";
 import Events from "./pages/Events/Events";
+import Gallery from "./pages/Gallery/Gallery";
+import Contact from "./pages/SiteSettings/Contact";
+import SiteContent from "./pages/SiteSettings/Content";
 
 
 export const childRoutes = [
@@ -48,11 +48,11 @@ export const childRoutes = [
         ),
     },
     {
-        path: "sitesettings/about",
+        path: "sitesettings/content",
         element: (
             <>
-                <PageTitle title="About Us | About Us" />
-                <About />
+                <PageTitle title="Site Content | Modarate Site content" />
+                <SiteContent />
             </>
         ),
     },

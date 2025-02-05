@@ -137,6 +137,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
               {/* <!-- Menu Item Dashboard --> */}
 
+
               {/* <!-- Menu Item Events --> */}
               <li>
                 <NavLink
@@ -162,6 +163,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
               {/* <!-- Menu Item Events --> */}
+
 
               {/* <!-- Menu Item Alumni --> */}
               <li>
@@ -191,7 +193,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
               {/* <!-- Menu Item Alumni --> */}
-
 
 
               {/* <!-- Menu Item Gallery --> */}
@@ -291,13 +292,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                           <li>
                             <NavLink
-                              to="/adminpanel/sitesettings/about"
+                              to="/adminpanel/sitesettings/content"
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
-                              About Us
+                              Site Content
                             </NavLink>
                           </li>
                           <li>
